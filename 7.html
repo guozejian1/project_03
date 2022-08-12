@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="JQuery.js"></script>
+    <script src="art-template.js"></script>
+</head>
+
+<body>
+    <button>按钮</button>
+    <h1 class="s"></h1>
+    <h1>我的世界</h1>
+</body>
+    <script type="text/html" id="a">
+        <div>{{@name}}</div>
+        <div>{{age|aq}}</div>
+        <div>{{if height==180}}身高180
+            {{else if height!=180}}身高不是180
+            {{/if}}
+        </div>
+        <div>
+            <ul>
+                {{each as}}
+                <li>
+                {{$index}}{{$value}}
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+        
+    </script>
+    <script>
+        $(function(){
+            template.defaults.imports.aq=function(data){
+                var a=20;
+                return a;
+            }
+            var data={name:"<h1>asd</h1>",age:12,height:180,as:["asd","bsd","weq"]};
+            var ht=template("a",data);
+            console.log(ht); 
+            $(".s").html(ht);
+            
+        }
+        )
+    </script>
+</html>
